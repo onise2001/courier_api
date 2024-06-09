@@ -7,7 +7,7 @@ from rest_framework.generics import ListAPIView
 
 class CustomUserViewSet(ModelViewSet):
     queryset = CustomUser.objects.all()
-    serializer_class = CustomUser
+    serializer_class = CustomUserSerializer
 
 
 # class AuthView(ListAPIView):

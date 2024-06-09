@@ -6,6 +6,18 @@ class ParcelSerializer(serializers.ModelSerializer):
         model = Parcel
         fields = '__all__'
 
+    
+    def create(self, validated_data):
+        parcel = Parcel.objects.get(pk=validated_data.get('parcel'))
+        if parcel:
+            delivery = DeliveryProof.objects.create(**validated_data)
+            parcel.status = 'Delivered'
+            parcel.save()
+            return delivery
+        
+        raise serializers.ValidationError("No such parcel")
+
+
 
 
 
