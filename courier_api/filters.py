@@ -7,6 +7,11 @@ class MyParcelsFilter(BaseFilterBackend):
         return queryset
     
 
+class CourierParcelsFilter(BaseFilterBackend):
+    def filter_queryset(self, request, queryset, view):
+        queryset = queryset.filter(courier=request.user)
+        return queryset
+
 
 class PendingParcelsFilter(BaseFilterBackend):
     def filter_queryset(self, request, queryset, view):

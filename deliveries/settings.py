@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'users',
     'courier_api',
     'corsheaders',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [

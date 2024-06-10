@@ -11,7 +11,11 @@ class CanViewParcelStatus(BasePermission):
     
 class CanConfirmDelivery(BasePermission):
     def has_object_permission(self, request, view, obj):
-        return request.user == obj.reciever
+        return request.user == obj.reciever and obj.status == "Pre delivery"
+    
+class CanConfirmPreDelivery(BasePermission):
+    def has_object_permission(self, request, view, obj):
+        return request.user == obj.courier
 
 class CanDeleteParcel(BasePermission):
     ...
@@ -22,17 +26,12 @@ class IsAdmin(BasePermission):
     
 class IsCourier(BasePermission):
     def has_permission(self, request, view):
-        return request.uers.role == "Courier"
+        return request.user.role == "Courier"
 
-class CanConfirmDelivery(BasePermission):
-    def has_object_permission(self, request, view, obj):
-        return request.user == obj.reciver or request.user.role == "Admin"
-
-    
 
 class CanUpdateParcelStatus(BasePermission):
     def has_object_permission(self, request, view, obj):
-        return request.user == obj.courier or request.user.role == "Admin"
+        return obj.status in ["Pending", "In Transit"],request.user == obj.courier or request.user.role == "Admin"
     
 class CanUploadDeliveryProof(BasePermission):
     def has_object_permission(self, request, view, obj):
@@ -41,4 +40,4 @@ class CanUploadDeliveryProof(BasePermission):
 
 class CanAssignParcel(BasePermission):
     def has_object_permission(self, request, view, obj):
-        return request.user.role in ["Admin","Courier"] and obj.status == 'Pending'
+        return (request.user.role == "Courier" and obj.status == 'Pending') or request.user.role == "Admin"
