@@ -24,8 +24,8 @@ jobs:
           pip install -r requirements.txt
 
       env:
-        DB_URL: $DB_URL
-        SECRET_KEY: $SECRET_KEY
+        DB_URL: $ {{ DB_URL }}
+        SECRET_KEY: ${{ SECRET_KEY }}
 
       - name: Run migrations
         run: python manage.py migrate
