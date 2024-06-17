@@ -3,7 +3,7 @@ name: Courier_API-CI/CD
 on:
   push:
     branches: [ main ]
-  pull:
+  pull_request:
     braches: [ main ]
 
 jobs:
