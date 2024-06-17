@@ -6,16 +6,19 @@ on:
   pull_request:
     braches: [ main ]
 
+env:
+  DB_URL: ${{ secrets.DB_URL }}
+  SECRET_KEY: ${{ secrets.SECRET_KEY }}
+
+
+
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
-        env:
-          DB_URL: ${{ secrets.DB_URL }}
-          SECRET_KEY: ${{ secrets.SECRET_KEY }}
-
+       
      
         
       
