@@ -12,6 +12,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+        env:
+          DB_URL: ${{ secrets.DB_URL }}
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
 
      
         
@@ -29,9 +32,7 @@ jobs:
       
 
       - name: Run migrations
-        env:
-            DB_URL: ${{ secrets.DB_URL }}
-            SECRET_KEY: ${{ secrets.SECRET_KEY }}
+        
         run: python manage.py migrate
 
       - name: Run tests
