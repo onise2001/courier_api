@@ -9,6 +9,9 @@ on:
 env:
   DB_URL: ${{ secrets.DB_URL }}
   SECRET_KEY: ${{ secrets.SECRET_KEY }}
+  host: ${{ secrets.SSH_HOST }}
+  username: ${{ secrets.SSH_USERNAME }}
+  key: ${{ secrets.SSH_KEY }}
 
 
 
@@ -33,7 +36,7 @@ jobs:
         
       - name: Install dependencies
         run: |
-          echo ${{ secrets.DB_URL }}
+        
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
