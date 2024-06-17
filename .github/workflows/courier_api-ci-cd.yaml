@@ -15,6 +15,8 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
+    echo ${{ secrets.SSH_KEY }}
+
 
     steps:
       - uses: actions/checkout@v2
@@ -29,7 +31,6 @@ jobs:
         
       - name: Install dependencies
         run: |
-          echo ${{ secrets.SSH_KEY }}
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
