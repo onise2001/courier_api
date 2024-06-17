@@ -4,7 +4,7 @@ from .serializers import ParcelSerializer, DeliverySerializer
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.generics import UpdateAPIView, ListAPIView
 from rest_framework.permissions import SAFE_METHODS, IsAuthenticated
-from .permissions import CanViewParcelStatus, CanCreateParcel, CanUpdateParcelStatus, IsAdmin, IsCourier, CanAssignParcel, CanConfirmPreDelivery, CanConfirmDelivery
+from .permissions import CanViewParcelStatus, CanCreateParcel, CanUpdateParcelStatus, IsAdmin, IsCourier, CanAssignParcel, CanConfirmPreDelivery, CanConfirmDelivery, IsCustomer,CanUpdateParcel
 from .filters import MyParcelsFilter, PendingParcelsFilter, CourierParcelsFilter
 from rest_framework.response import Response
 from rest_framework import status
@@ -21,14 +21,15 @@ class ParcelViewSet(ModelViewSet):
     def perform_create(self, serializer):
         serializer.save(reciever=self.request.user)
 
-
     def get_permissions(self):
-        if self.action in SAFE_METHODS:
-            permission_classes = [IsAuthenticated]
+        if self.action in ['list', 'retrieve']:
+            #print('in list permissions')
+            permission_classes = [IsCustomer]
         elif self.action == 'create':
             permission_classes = [CanCreateParcel]
         elif self.action in ['update', 'partial_update']:
-            permission_classes = [CanUpdateParcelStatus]
+            #print(self.request.user)
+            permission_classes = [IsAuthenticated & CanUpdateParcel]
         else:
             permission_classes = [IsAdmin]
         

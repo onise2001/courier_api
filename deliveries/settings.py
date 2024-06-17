@@ -12,7 +12,8 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 from datetime import timedelta
-
+import dj_database_url
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -21,10 +22,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-*)o6uvgoyk_g($6xib6k254ta!-r4aas$#v(98g9v4h23wk_my'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DEBUG')
 
 ALLOWED_HOSTS = []
 
@@ -93,14 +94,7 @@ WSGI_APPLICATION = 'deliveries.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'courier_api',
-        'USER': 'postgres',
-        'PASSWORD': 'Onisime_450!',
-        'HOST': 'localhost',
-        'PORT': '5432'
-    }
+    'default': dj_database_url.parse('postgres://invoice_api_user:flsx4ObpjTYVo0gvXCVmb0NSdZYcqAHd@dpg-cp4hsjv79t8c73egp8og-a.frankfurt-postgres.render.com/invoice_api')
 }
 
 

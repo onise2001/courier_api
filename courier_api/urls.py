@@ -3,8 +3,8 @@ from rest_framework.routers import DefaultRouter
 from .views import ParcelViewSet, AssingParcelView, AdminAssignParcelView,AllPendingParcelsView, MarkParcelAsPreDelivered, MyParcelsView, CourierParcelsView, ConfirmDelivery
 
 router = DefaultRouter(trailing_slash=False)
-router.register(r'parcel', ParcelViewSet)
-router.register(r'mark_pre_delivered/', MarkParcelAsPreDelivered)
+router.register(r'parcel', ParcelViewSet, basename='parcels')
+router.register(r'mark_pre_delivered/', MarkParcelAsPreDelivered, basename='pre_delivered')
 
 urlpatterns = [
     path('', include(router.urls)),
