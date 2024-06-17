@@ -40,3 +40,22 @@ jobs:
 
       - name: Run tests
         run: python manage.py test
+
+
+  deploy:
+    - name: Deploy to Digitalocean 
+    runs-on: ubuntu-latest
+    uses: appleboy/ssh-action@main
+    with:
+      host: ${{ secrets.SSH_HOST }}
+      username: ${{ secrets.SSH_USERNAME }}
+      key: ${{ secrets.SSH_KEY }}
+
+      script: |
+        cd /courier_api
+        git pull
+        docker-compose down
+        docker-compose up --build
+
+
+
