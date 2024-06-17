@@ -61,10 +61,10 @@ jobs:
       - name: Deploy to Digitalocean
         uses: appleboy/ssh-action@v1.0.3
         with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USERNAME }}
+          #host: ${{ secrets.SSH_HOST }}
+          #username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_KEY }}
-          passphrase: 
+          #passphrase: 
           script: |
             ssh root@64.226.119.53
             cd /courier_api
