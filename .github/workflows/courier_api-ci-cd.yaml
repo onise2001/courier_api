@@ -66,6 +66,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           passphrase: 
           script: |
+            ssh root@64.226.119.53
             cd /courier_api
             git pull
             docker-compose down
