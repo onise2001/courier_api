@@ -68,7 +68,7 @@ jobs:
           script: |
             ssh root@64.226.119.53
             ls
-            cd /courier_api
+            cd courier_api
             git pull
             docker-compose down
             docker-compose up --build
