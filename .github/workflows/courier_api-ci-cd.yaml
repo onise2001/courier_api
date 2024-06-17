@@ -13,10 +13,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Setup env variables
-        env:
-          DB_URL: $ {{ DB_URL }}
-          SECRET_KEY: ${{ SECRET_KEY }}
+     
+        
       
       - name: Install Python 3.12.4
         uses: actions/setup-python@v2
@@ -31,6 +29,9 @@ jobs:
       
 
       - name: Run migrations
+        env:
+            DB_URL: $ {{ DB_URL }}
+            SECRET_KEY: ${{ SECRET_KEY }}
         run: python manage.py migrate
 
       - name: Run tests
