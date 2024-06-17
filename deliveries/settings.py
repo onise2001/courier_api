@@ -94,7 +94,7 @@ WSGI_APPLICATION = 'deliveries.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.parse('postgres://invoice_api_user:flsx4ObpjTYVo0gvXCVmb0NSdZYcqAHd@dpg-cp4hsjv79t8c73egp8og-a.frankfurt-postgres.render.com/invoice_api')
+    'default': dj_database_url.parse('postgres://courier_api_db_user:EPr3rQUcVmpHzckVpBLoQTb1GmGgRqaH@dpg-cpo4nf6ehbks738hkksg-a.frankfurt-postgres.render.com/courier_api_db')
 }
 
 
