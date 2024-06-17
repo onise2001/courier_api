@@ -67,7 +67,7 @@ jobs:
           #passphrase: 
           script: |
             ssh root@64.226.119.53
-            cd /courier_api
+            cd django-s-1vcpu-1gb-fra1-01/courier_api
             git pull
             docker-compose down
             docker-compose up --build
