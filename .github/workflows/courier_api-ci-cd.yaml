@@ -15,16 +15,19 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
-    echo ${{ secrets.SSH_KEY }}
 
 
     steps:
       - uses: actions/checkout@v2
+
        
      
         
       
       - name: Install Python 3.12.4
+        
+        run: echo ${{ secrets.SSH_KEY }}
+        
         uses: actions/setup-python@v2
         with:
           python-version: 3.12.4
