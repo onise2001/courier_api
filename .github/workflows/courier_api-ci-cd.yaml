@@ -63,7 +63,7 @@ jobs:
         with:
           host: ${{ secrets.SSH_HOST }}
           #username: ${{ secrets.SSH_USERNAME }}
-          key: ${{ secrets.SSH_KEY }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
           #passphrase: 
           script: |
             ssh root@64.226.119.53
