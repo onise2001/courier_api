@@ -43,19 +43,23 @@ jobs:
 
 
   deploy:
-    - name: Deploy to Digitalocean 
+    name: Deploy to Digitalocean 
     runs-on: ubuntu-latest
-    uses: appleboy/ssh-action@main
-    with:
-      host: ${{ secrets.SSH_HOST }}
-      username: ${{ secrets.SSH_USERNAME }}
-      key: ${{ secrets.SSH_KEY }}
-
-      script: |
-        cd /courier_api
-        git pull
-        docker-compose down
-        docker-compose up --build
-
+    needs: build
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    steps:
+      - name: Deploy to Digitalocean
+        uses: appleboy/ssh-action@main
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+    
+          script: |
+            cd /courier_api
+            git pull
+            docker-compose down
+            docker-compose up --build
+  
 
 
