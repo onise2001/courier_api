@@ -10,7 +10,9 @@ schema_view = get_schema_view(
         default_version='V1',
         description="Courier API",
 
-    )
+    ),
+    public=True,
+    permission_classes=(AllowAny,),
 )
 urlpatterns = [
     path('admin/', admin.site.urls),
