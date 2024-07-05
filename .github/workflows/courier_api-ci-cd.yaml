@@ -58,12 +58,10 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           #passphrase: 
           script: |
-            ssh root@64.226.119.53
-            ls
             cd courier_api
             git pull
             docker-compose down
-            docker-compose up --build
+            docker-compose up --build --detach
             
             
   
